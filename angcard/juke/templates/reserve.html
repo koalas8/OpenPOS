@@ -1,0 +1,101 @@
+<div>
+    <!-- BEGIN PAGE HEADER-->
+    <div class="row">
+        <div class="col-md-12">
+            <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+            <h3 class="page-title">
+                库存管理
+                <small>Shops</small>
+                <div class="pull-right">
+                    <button class="btn btn-primary" ng-click="setAction('add')">添加</button>
+                    <button class="btn btn-primary" ng-click="showList()">列表</button>
+                </div>
+            </h3>
+            <!-- END PAGE TITLE & BREADCRUMB-->
+        </div>
+    </div>
+    <!-- END PAGE HEADER-->
+
+    <div class="portlet box blue" ng-show="(menu.action=='add') || (menu.action=='update')">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="icon-reorder"></i>
+                添加供应商
+            </div>
+        </div>
+        <div class="portlet-body form">
+            <!-- BEGIN FORM-->
+            <form class="form-horizontal" ng-submit="submit(supplier)">
+                <div class="form-body">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">供应商名称</label>
+
+                        <div class="col-md-4">
+                            <input type="text" ng-model="supplier.supplier_name" class="form-control" placeholder="输入供应商名称">
+                            <input type="hidden" ng-model="supplier.id"> <!--used for update supplier info -->
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">联系人</label>
+
+                        <div class="col-md-4">
+                            <input type="text" ng-model="supplier.contect" class="form-control" placeholder="输入供应商联系人">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">联系电话</label>
+
+                        <div class="col-md-4">
+                            <input type="text" ng-model="supplier.tel" class="form-control" placeholder="输入供应商联系方式">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">供应商地址</label>
+
+                        <div class="col-md-4">
+                            <input type="text" ng-model="supplier.address" class="form-control" placeholder="输入供应商地址">
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="form-actions fluid">
+                    <div class="col-md-offset-3 col-md-9">
+                        <button type="submit" class="btn blue">确定</button>
+                        <button type="button" class="btn default" ng-click="setAction('list')">取消</button>
+                    </div>
+                </div>
+            </form>
+            <!-- END FORM-->
+        </div>
+    </div>
+
+    <div class="row" ng-show="menu.action=='list'">
+        <div class="col-md-12">
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th width="50">序号</th>
+                    <th>供应商名称</th>
+                    <th>联系方式</th>
+                    <th>地址</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="supplier in supplierStore.data">
+                    <td>{{(supplierStore.page - 1) * supplierStore.limit + $index + 1}}</td>
+                    <td>{{supplier.supplier_name}}</td>
+                    <td>{{supplier.tel}}</td>
+                    <td>{{supplier.address}}</td>
+                    <td>
+                        <span ng-click="update($index)">修改</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

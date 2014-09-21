@@ -1,0 +1,14 @@
+-- 2014.06.17 11:27:00
+ALTER TABLE user_info ADD COLUMN email CHARACTER VARYING (100) NOT NULL DEFAULT '';
+
+-- 2014.06.19 20:18:00
+ALTER TABLE goods_info ADD COLUMN unit_no CHARACTER VARYING (8);
+ALTER TABLE goods_info ADD COLUMN shop_no CHARACTER VARYING (15) NOT NULL DEFAULT '';
+UPDATE goods_info SET unit_no = (select unit_no from unit_info where unit_no like '3%');
+ALTER TABLE goods_info ALTER COLUMN unit_no SET NOT NULL;
+
+-- 2014.06.24
+ALTER TABLE user_info ADD COLUMN reg_time TIMESTAMP NOT NULL DEFAULT 'now()';
+
+-- 2014.09.06
+ALTER TABLE goods_class_info ADD COLUMN status CHARACTER VARYING (1) NOT NULL DEFAULT '0';

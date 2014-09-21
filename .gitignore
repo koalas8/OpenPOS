@@ -1,0 +1,8 @@
+*.mdb
+*.pyc
+
+Debug/
+Release/
+obj/
+Properties/
+_gsdata_/

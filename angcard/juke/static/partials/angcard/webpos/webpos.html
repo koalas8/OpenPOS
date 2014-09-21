@@ -1,0 +1,138 @@
+<div>
+	<!-- BEGIN PAGE HEADER-->
+	<div class="row">
+		<div class="col-md-12">
+			<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+			<h3 class="page-title">
+				卡交易
+				<small>Card Trans</small>               
+			</h3>
+			<!-- END PAGE TITLE & BREADCRUMB-->
+		</div>
+	</div>
+	<!-- END PAGE HEADER-->
+
+	<div class="row">
+		<div class="col-md-12 breadcrumb">
+			<button class="btn btn-primary" ng-click="setTransCode('000010')">消费 <li class="fa fa-money"></li></button>
+			<button class="btn btn-primary" ng-click="setTransCode('000030')">充值 <li class="fa fa-cny"></li></button>
+			<button class="btn btn-primary" ng-click="setTransCode('000190')">撤销 <li class="fa fa-mail-reply"></li></button>
+			<button class="btn btn-primary" ng-click="setTransCode('000050')">积分消费 <li class="fa"></li></button>
+			<button class="btn btn-primary" ng-click="setTransCode('000070')">积分充值 <li class="fa"></li></button>
+			<button class="btn btn-primary" ng-click="setTransCode('000110')">卡启用 <li class="fa fa-credit-card"></li></button>
+			<!-- <button class="btn btn-primary" ng-click="setTransCode('000120')">换卡</button> -->
+			<button class="btn btn-primary" ng-click="setTransCode('000090')">查询余额 <li class="fa fa-eye"></li></button>
+			<button class="btn btn-primary" ng-click="setTransCode('000140')">卡改密码 <li class="fa fa-lock"></li></button>
+			<button class="btn btn-primary" ng-click="setTransCode('000150')">卡改有效期 <li class="fa fa-calendar"></li></button>
+		</div>
+	</div>
+	
+
+	<div class="portlet box blue">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="icon-reorder"></i>
+				{{getTransName()}}
+			</div>
+		</div>
+		<div class="portlet-body form">
+			<!-- BEGIN FORM-->
+			<form class="form-horizontal" ng-submit="doTrans(trans)">
+				<div class="form-body">
+										
+					<div class="form-group" ng-show="show('ipt_card_no')">
+						<label class="col-md-3 control-label" for="card_no">刷卡</label>
+						<div class="col-md-4">
+							<input type="text" value="{{trans.card_no}}" ng-model="trans.card_no" ng-change="setTrack2(trans.card_no)" class="form-control" placeholder="请刷卡...">
+						</div>
+					</div>
+
+					<div class="form-group" ng-show="show('ipt_amount')">
+						<label class="col-md-3 control-label" for="amount">金额</label>
+						<div class="col-md-4">
+							<input type="text" ng-model="trans.amount" class="form-control" placeholder="0.00">
+						</div>
+					</div>
+
+					<div class="form-group" ng-show="show('ipt_password')">
+						<label class="col-md-3 control-label" for="password">卡密码</label>
+						<div class="col-md-4">
+							<input type="password" ng-model="trans.password" class="form-control" placeholder="请输入密码">
+						</div>
+					</div>
+
+					<div class="form-group" ng-show="show('ipt_new_password')">
+						<label class="col-md-3 control-label" for="new_password">新密码</label>
+						<div class="col-md-4">
+							<input type="password" ng-model="trans.new_password" class="form-control" placeholder="请输入新密码">
+						</div>
+					</div>
+
+					<div class="form-group" ng-show="show('ipt_renew_password')">
+						<label class="col-md-3 control-label" for="renew_password">确认新密码</label>
+						<div class="col-md-4">
+							<input type="password" ng-model="trans.renew_password" class="form-control" placeholder="请再次输入新密码">
+						</div>
+					</div>
+
+					<div class="form-group" ng-show="show('ipt_trace_no')">
+						<label class="col-md-3 control-label" for="trace_no">流水号</label>
+						<div class="col-md-4">
+							<input type="text" ng-model="trans.trace_no" class="form-control" placeholder="请输入流水号">
+						</div>
+					</div>
+
+					<div class="form-group" ng-show="show('ipt_batch_no')">
+						<label class="col-md-3 control-label" for="batch_no">批次号</label>
+						<div class="col-md-4">
+							<input type="text" ng-model="trans.batch_no" class="form-control" placeholder="请输入批次号">
+						</div>
+					</div>
+
+					<div class="form-group" ng-show="show('ipt_exp_date')">
+						<label class="col-md-3 control-label" for="exp_date">新有效期</label>
+						<div class="col-md-4">
+							<input type="text" ng-model="trans.new_exp_date" class="form-control" placeholder="请输入新的有效期">
+						</div>
+					</div>
+				
+				</div>                            
+				<div class="form-actions fluid">
+					<div class="col-md-offset-3 col-md-9">
+						<button type="submit" class="btn blue">确定</button>
+						<button type="button" class="btn default" ng-click="setAction('list')">取消</button>
+					</div>
+				</div>
+			</form>
+			<!-- END FORM-->
+		</div>
+	</div>
+
+
+	<div class="row" ng-show="menu.action=='list'">
+		<div class="col-md-12">
+			<table class="table table-striped table-bordered">
+				<thead>
+				<tr>
+					<th width="50">序号</th>
+					<th>卡号</th>
+					<th>交易金额</th>
+					<th>交易日期</th>
+					<th>交易时间</th>
+					<th>交易结果</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr ng-repeat="trans in transListStore.data">
+					<td>{{(transListStore.page - 1) * transListStore.limit + $index + 1}}</td>
+					<td>{{trans.card_no}}</td>
+					<td>{{trans.amount/100.00}}</td>
+					<td>{{trans.trans_date}}</td>
+					<td>{{trans.trans_time}}</td>
+					<td>{{trans.return_message}}</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>   
+</div>

@@ -1,0 +1,102 @@
+<div>
+  <!-- BEGIN PAGE HEADER-->
+  <div class="row">
+    <div class="col-md-12">
+      <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+      <h3 class="page-title">
+        终端交易明细查询
+        <small>Terminal Trans List</small>  
+        <div class="pull-right">
+          <button class="btn btn-primary" ng-show="rootCtrl_showMenu('00906')" ng-click="menu.action='search'">查询</button>
+        </div>              
+      </h3>
+      <!-- END PAGE TITLE & BREADCRUMB-->
+    </div>
+  </div>
+  <!-- END PAGE HEADER-->
+  
+
+  <div class="portlet box blue" ng-show="menu.action=='search'">
+    <div class="portlet-title">
+      <div class="caption">
+        <i class="icon-reorder"></i>
+        查询终端交易明细
+      </div>
+    </div>
+    <div class="portlet-body form">
+      <!-- BEGIN FORM-->
+      <form class="form-horizontal" ng-submit="showList(query.page)">  
+        <div class="form-body">
+          <div class="form-group">
+            <label class="col-md-3 control-label">终端号</label>
+
+            <div class="col-md-4">
+              <input type="text" ng-model="query.terminal_no" class="form-control" placeholder='请输入终端号'>
+            </div>
+          </div>                      
+        </div>      
+        <div class="form-body">
+          <div class="form-group">
+            <label class="col-md-3 control-label">交易日期</label>
+
+            <div class="col-md-4">
+              <input type="daterange" format="YYYY/MM/DD" separator="-" ng-model="query.trans_date" readonly class="form-control" style="cursor: pointer;">
+            </div>
+          </div>                      
+        </div>
+        <div class="form-body">
+          <div class="form-group">
+            <label class="col-md-3 control-label">交易类型</label>
+
+            <div class="col-md-4">
+              <select ng-model="query.trans_code" ng-options="t.trans_code as t.trans_name for t in transDim" class="form-control">
+                <option value="">---选择交易类型---</option>
+              </select>
+            </div>
+          </div>                    
+        </div>
+        <div class="form-actions fluid">
+          <div class="col-md-offset-3 col-md-9">
+            <button type="submit" class="btn blue">确定</button>
+            <button type="button" class="btn default" ng-click="menu.action='list'">取消</button>
+          </div>
+        </div>
+      </form>
+      <!-- END FORM-->
+    </div>
+  </div>
+
+
+  <div class="row" ng-show="menu.action=='list'">
+    <div class="col-md-12">
+      <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+          <th width="50">序号</th>
+          <th>卡号</th>
+          <th>交易金额</th>
+          <th>交易日期</th>
+          <th>交易时间</th>
+          <th>发卡集团</th>
+          <th>受理集团</th>
+          <th>受理商户</th>
+          <th>交易类型</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="trans in transResultStore.data">
+          <td>{{(transResultStore.page - 1) * transResultStore.limit + $index + 1}}</td>
+          <td>{{trans.card_no}}</td>
+          <td>{{trans.amount/100.00}}</td>
+          <td>{{trans.trans_date}}</td>
+          <td>{{trans.trans_time}}</td>
+          <td>{{trans.credit_unit}}</td>
+          <td>{{trans.debit_unit}}</td>
+          <td>{{trans.shop_name}}</td>
+          <td>{{trans.trans_name}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>   
+</div>

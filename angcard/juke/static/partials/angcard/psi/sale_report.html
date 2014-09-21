@@ -1,0 +1,96 @@
+<!-- BEGIN PAGE HEADER-->
+<div class="row">
+	<div class="col-md-12">
+		<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+		<h3 class="page-title">
+			商品销售
+			<small>Sale</small>
+			<div class="pull-right">
+				<!-- <a class="btn default" data-toggle="modal" href="#queryModel">查询</a> -->
+			</div>
+		</h3>
+		<!-- END PAGE TITLE & BREADCRUMB-->
+	</div>
+</div>
+<!-- END PAGE HEADER-->
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="icon-reorder"></i>
+			销售明细
+		</div>
+		<div class="actions">
+			<div class="btn-group btn-group-sm">
+				<button class="btn" ng-click="setReportQuery(0)">今天</button>
+				<button class="btn" ng-click="setReportQuery(-1)">昨天</button>
+				<button class="btn" ng-click="setReportQuery(-7)">最近7天</button>
+				<button class="btn" ng-click="setReportQuery(-30)">最近1个月</button>
+				<button class="btn red" data-toggle="modal" href="#queryModel">自定义时间</button>
+			</div>
+		</div>
+	</div>
+	<div class="portlet-body">
+		<table class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<th width="50">序号</th>
+					<th>商品名称</th>
+					<th>销售数量</th>
+					<th>销售单价</th>
+					<th>销售总额</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="g in saleGoodsStore.data">
+					<td>{{(saleGoodsStore.page - 1) * saleGoodsStore.limit + $index + 1}}</td>
+					<td>{{g.goods_name}}</td>
+					<td>{{g.goods_amount}}</td>
+					<td>{{g.sale_price / 100.00 | number:2}}</td>
+					<td>{{g.goods_amount * g.sale_price / 100.00 | number:2}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<juke-pagination collection="saleGoodsStore" page="1" limit="10"
+						url="saleGoodsStoreUrl"></juke-pagination>
+	</div>
+</div>
+
+<div id="queryModel" class="modal fade" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+				<h4 class="modal-title">报表查询</h4>
+			</div>
+			<div class="modal-body">
+				<div class="scroller" style="height:300px" data-always-visible="1" data-rail-visible1="1">
+					<div class="row">
+						<form class="form-horizontal" ng-submit="">
+							<div class="form-body">
+								<div class="form-group">
+									<label class="col-md-3 control-label">开始日期</label>
+
+									<div class="col-md-8">
+										<input type="text" ng-model="reportQuery.start_date" class="form-control" placeholder="输入开始日期">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">结束日期</label>
+
+									<div class="col-md-8">
+										<input type="text" ng-model="reportQuery.end_date" class="form-control" placeholder="输入结束日期">
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" data-dismiss="modal" class="btn default">关闭</button>
+				<button type="button" class="btn green" ng-click="doQuery(reportQuery)">查询</button>
+			</div>
+		</div>
+	</div>
+</div>

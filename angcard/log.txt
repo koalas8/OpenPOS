@@ -1,0 +1,655 @@
+Exception on /user/register [POST]
+Traceback (most recent call last):
+  File "/data/www/angcard/env/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/data/www/angcard/env/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/data/www/angcard/env/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/data/www/angcard/env/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/data/www/angcard/env/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/data/www/angcard/env/local/lib/python2.7/site-packages/flask/views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "/data/www/angcard/env/local/lib/python2.7/site-packages/flask/views.py", line 149, in dispatch_request
+    return meth(*args, **kwargs)
+  File "/data/www/angcard/app/juke/views/users.py", line 175, in post
+    unit = UnitInfo(unit_no=unit_no, unit_name=shop_name, status='2', remark=u'免费用户', is_admin=is_admin)
+  File "<string>", line 4, in __init__
+  File "/data/www/angcard/env/local/lib/python2.7/site-packages/sqlalchemy/orm/state.py", line 196, in _initialize_instance
+    return manager.original_init(*mixed[1:], **kwargs)
+  File "/data/www/angcard/env/local/lib/python2.7/site-packages/sqlalchemy/ext/declarative/base.py", line 523, in _declarative_constructor
+    (k, cls_.__name__))
+TypeError: 'is_admin' is an invalid keyword argument for UnitInfo
+Exception on /user/register [POST]
+Traceback (most recent call last):
+  File "/data/www/angcard/env/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/data/www/angcard/env/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/data/www/angcard/env/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/data/www/angcard/env/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/data/www/angcard/env/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/data/www/angcard/env/local/lib/python2.7/site-packages/flask/views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "/data/www/angcard/env/local/lib/python2.7/site-packages/flask/views.py", line 149, in dispatch_request
+    return meth(*args, **kwargs)
+  File "/data/www/angcard/app/juke/views/users.py", line 221, in post
+    send_email_result = MyEmail().send_email(_from=app.config['EMAIL_ACCOUNT'], password=app.config['EMAIL_PASSWORD'], subject=u'邮箱验证', to=user_no, content=html)
+TypeError: send_email() got an unexpected keyword argument 'password'
+Exception on /user/register [POST]
+Traceback (most recent call last):
+  File "/data/www/angcard/env/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/data/www/angcard/env/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/data/www/angcard/env/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/data/www/angcard/env/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/data/www/angcard/env/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/data/www/angcard/env/local/lib/python2.7/site-packages/flask/views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "/data/www/angcard/env/local/lib/python2.7/site-packages/flask/views.py", line 149, in dispatch_request
+    return meth(*args, **kwargs)
+  File "/data/www/angcard/app/juke/views/users.py", line 221, in post
+    send_email_result = MyEmail().send_email(_from=app.config['EMAIL_ACCOUNT'], password=app.config['EMAIL_PASSWORD'], subject=u'邮箱验证', to=user_no, content=html)
+TypeError: send_email() got an unexpected keyword argument 'password'
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Python27\lib\site-packages\flask_restful-0.2.10-py2.7.egg\flask_restful\__init__.py", line 384, in wrapper
+    resp = resource(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\views.py", line 149, in dispatch_request
+    return meth(*args, **kwargs)
+  File "G:\coolcard\angcard\juke\views\psi\goods.py", line 181, in post
+    class_name = request.json.get('class_name', '').strip()
+AttributeError: 'NoneType' object has no attribute 'get'
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Python27\lib\site-packages\flask_restful-0.2.10-py2.7.egg\flask_restful\__init__.py", line 384, in wrapper
+    resp = resource(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\views.py", line 149, in dispatch_request
+    return meth(*args, **kwargs)
+  File "G:\coolcard\angcard\juke\views\psi\goods.py", line 181, in post
+    class_name = request.json.get('class_name', '').strip()
+AttributeError: 'NoneType' object has no attribute 'get'
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Python27\lib\site-packages\flask_restful-0.2.10-py2.7.egg\flask_restful\__init__.py", line 384, in wrapper
+    resp = resource(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\views.py", line 149, in dispatch_request
+    return meth(*args, **kwargs)
+  File "G:\coolcard\angcard\juke\views\psi\goods.py", line 181, in post
+    class_name = request.json.get('class_name', '').strip()
+AttributeError: 'NoneType' object has no attribute 'get'
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Python27\lib\site-packages\flask_restful-0.2.10-py2.7.egg\flask_restful\__init__.py", line 384, in wrapper
+    resp = resource(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\views.py", line 149, in dispatch_request
+    return meth(*args, **kwargs)
+  File "G:\coolcard\angcard\juke\views\psi\goods.py", line 181, in post
+    class_name = request.json.get('class_name', '').strip()
+AttributeError: 'NoneType' object has no attribute 'get'
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Python27\lib\site-packages\flask_restful-0.2.10-py2.7.egg\flask_restful\__init__.py", line 384, in wrapper
+    resp = resource(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\views.py", line 149, in dispatch_request
+    return meth(*args, **kwargs)
+  File "G:\coolcard\angcard\juke\views\psi\goods.py", line 181, in post
+    class_name = request.json.get('class_name', '').strip()
+AttributeError: 'NoneType' object has no attribute 'get'
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Python27\lib\site-packages\flask_restful-0.2.10-py2.7.egg\flask_restful\__init__.py", line 384, in wrapper
+    resp = resource(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\views.py", line 149, in dispatch_request
+    return meth(*args, **kwargs)
+  File "G:\coolcard\angcard\juke\views\psi\goods.py", line 181, in post
+    class_name = request.json.get('class_name', '').strip()
+AttributeError: 'NoneType' object has no attribute 'get'
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Python27\lib\site-packages\flask_restful-0.2.10-py2.7.egg\flask_restful\__init__.py", line 384, in wrapper
+    resp = resource(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\views.py", line 149, in dispatch_request
+    return meth(*args, **kwargs)
+  File "G:\coolcard\angcard\juke\views\psi\goods.py", line 181, in post
+    class_name = request.json.get('class_name', '').strip()
+AttributeError: 'NoneType' object has no attribute 'get'
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Python27\lib\site-packages\flask_restful-0.2.10-py2.7.egg\flask_restful\__init__.py", line 384, in wrapper
+    resp = resource(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\views.py", line 149, in dispatch_request
+    return meth(*args, **kwargs)
+  File "G:\coolcard\angcard\juke\views\psi\goods.py", line 181, in post
+    class_name = request.json.get('class_name', '').strip()
+AttributeError: 'NoneType' object has no attribute 'get'
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Python27\lib\site-packages\flask_restful-0.2.10-py2.7.egg\flask_restful\__init__.py", line 384, in wrapper
+    resp = resource(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\views.py", line 149, in dispatch_request
+    return meth(*args, **kwargs)
+  File "G:\coolcard\angcard\juke\authority.py", line 55, in m
+    ret = func(*args, **kwargs)
+  File "G:\coolcard\angcard\juke\views\member.py", line 129, in post
+    db_session.commit()
+  File "D:\Python27\lib\site-packages\sqlalchemy\orm\scoping.py", line 149, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\sqlalchemy\orm\session.py", line 721, in commit
+    self.transaction.commit()
+  File "D:\Python27\lib\site-packages\sqlalchemy\orm\session.py", line 354, in commit
+    self._prepare_impl()
+  File "D:\Python27\lib\site-packages\sqlalchemy\orm\session.py", line 334, in _prepare_impl
+    self.session.flush()
+  File "D:\Python27\lib\site-packages\sqlalchemy\orm\session.py", line 1818, in flush
+    self._flush(objects)
+  File "D:\Python27\lib\site-packages\sqlalchemy\orm\session.py", line 1936, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "D:\Python27\lib\site-packages\sqlalchemy\util\langhelpers.py", line 58, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "D:\Python27\lib\site-packages\sqlalchemy\orm\session.py", line 1900, in _flush
+    flush_context.execute()
+  File "D:\Python27\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 372, in execute
+    rec.execute(self)
+  File "D:\Python27\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 525, in execute
+    uow
+  File "D:\Python27\lib\site-packages\sqlalchemy\orm\persistence.py", line 64, in save_obj
+    table, insert)
+  File "D:\Python27\lib\site-packages\sqlalchemy\orm\persistence.py", line 541, in _emit_insert_statements
+    execute(statement, multiparams)
+  File "D:\Python27\lib\site-packages\sqlalchemy\engine\base.py", line 662, in execute
+    params)
+  File "D:\Python27\lib\site-packages\sqlalchemy\engine\base.py", line 761, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "D:\Python27\lib\site-packages\sqlalchemy\engine\base.py", line 874, in _execute_context
+    context)
+  File "D:\Python27\lib\site-packages\sqlalchemy\engine\base.py", line 1024, in _handle_dbapi_exception
+    exc_info
+  File "D:\Python27\lib\site-packages\sqlalchemy\util\compat.py", line 195, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "D:\Python27\lib\site-packages\sqlalchemy\engine\base.py", line 867, in _execute_context
+    context)
+  File "D:\Python27\lib\site-packages\sqlalchemy\engine\default.py", line 324, in do_execute
+    cursor.execute(statement, parameters)
+IntegrityError: (IntegrityError) 错误:  在字段 "card_type" 中空值违反了非空约束
+DETAIL:  失败, 行包含(e73ef0f70ccd49e6a2d, e73ef0f70ccd49e6a2d, t, f, 100, 100, 0, null, null, a49745c5-4ce8-4a7f-a94c-77d727bc4d47, 20161231, 670b14728ad9902aecba32e22fa4f6bd, 10, 1, , 0, 0, 0000000000000000000000000000000000000, 996afea0, 12, null, 2014-06-17 21:08:09.897).
+ 'INSERT INTO card_info (card_no, custom_card_no, property_deposit, property_times, amount, times, card_type, card_group, member_id, exp_date, password, points, points_rule, track_2, unit_no, valid_life, card_level_id) VALUES (%(card_no)s, %(custom_card_no)s, %(property_deposit)s, %(property_times)s, %(amount)s, %(times)s, %(card_type)s, %(card_group)s, %(member_id)s, %(exp_date)s, %(password)s, %(points)s, %(points_rule)s, %(track_2)s, %(unit_no)s, %(valid_life)s, %(card_level_id)s)' {'points_rule': 1.0, 'unit_no': u'996afea0', 'valid_life': 12, 'property_times': 'f', 'times': 100, 'card_type': None, 'amount': 100, 'points': 10, 'property_deposit': 't', 'card_level_id': None, 'exp_date': u'20161231', 'member_id': 'a49745c5-4ce8-4a7f-a94c-77d727bc4d47', 'card_group': None, 'custom_card_no': 'e73ef0f70ccd49e6a2d', 'password': '670b14728ad9902aecba32e22fa4f6bd', 'track_2': '0000000000000000000000000000000000000', 'card_no': 'e73ef0f70ccd49e6a2d'}
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 401, in wrapper
+    return self.make_response(data, code, headers=headers)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 418, in make_response
+    resp = self.representations[mediatype](data, *args, **kwargs)
+  File "E:\coolcard\angcard\juke\__init__.py", line 40, in html
+    resp = make_response(data, code)
+  File "D:\Python27\lib\site-packages\flask\helpers.py", line 183, in make_response
+    return current_app.make_response(args)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1566, in make_response
+    raise ValueError('View function did not return a response')
+ValueError: View function did not return a response
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 257, in error_router
+    return self.handle_error(e)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 307, in handle_error
+    resp = self.make_response(data, code)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 418, in make_response
+    resp = self.representations[mediatype](data, *args, **kwargs)
+  File "E:\coolcard\angcard\juke\__init__.py", line 40, in html
+    resp = make_response(data, code)
+  File "D:\Python27\lib\site-packages\flask\helpers.py", line 183, in make_response
+    return current_app.make_response(args)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1577, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "D:\Python27\lib\site-packages\werkzeug\wrappers.py", line 827, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "D:\Python27\lib\site-packages\werkzeug\wrappers.py", line 57, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "D:\Python27\lib\site-packages\werkzeug\test.py", line 855, in run_wsgi_app
+    app_iter = app(environ, start_response)
+TypeError: 'dict' object is not callable
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 401, in wrapper
+    return self.make_response(data, code, headers=headers)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 418, in make_response
+    resp = self.representations[mediatype](data, *args, **kwargs)
+  File "E:\coolcard\angcard\juke\__init__.py", line 40, in html
+    resp = make_response(data, code)
+  File "D:\Python27\lib\site-packages\flask\helpers.py", line 183, in make_response
+    return current_app.make_response(args)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1566, in make_response
+    raise ValueError('View function did not return a response')
+ValueError: View function did not return a response
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 257, in error_router
+    return self.handle_error(e)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 307, in handle_error
+    resp = self.make_response(data, code)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 418, in make_response
+    resp = self.representations[mediatype](data, *args, **kwargs)
+  File "E:\coolcard\angcard\juke\__init__.py", line 40, in html
+    resp = make_response(data, code)
+  File "D:\Python27\lib\site-packages\flask\helpers.py", line 183, in make_response
+    return current_app.make_response(args)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1577, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "D:\Python27\lib\site-packages\werkzeug\wrappers.py", line 827, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "D:\Python27\lib\site-packages\werkzeug\test.py", line 855, in run_wsgi_app
+    app_iter = app(environ, start_response)
+TypeError: 'dict' object is not callable
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 401, in wrapper
+    return self.make_response(data, code, headers=headers)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 418, in make_response
+    resp = self.representations[mediatype](data, *args, **kwargs)
+  File "E:\coolcard\angcard\juke\__init__.py", line 40, in html
+    resp = make_response(data, code)
+  File "D:\Python27\lib\site-packages\flask\helpers.py", line 183, in make_response
+    return current_app.make_response(args)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1566, in make_response
+    raise ValueError('View function did not return a response')
+ValueError: View function did not return a response
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 257, in error_router
+    return self.handle_error(e)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 307, in handle_error
+    resp = self.make_response(data, code)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 418, in make_response
+    resp = self.representations[mediatype](data, *args, **kwargs)
+  File "E:\coolcard\angcard\juke\__init__.py", line 40, in html
+    resp = make_response(data, code)
+  File "D:\Python27\lib\site-packages\flask\helpers.py", line 183, in make_response
+    return current_app.make_response(args)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1577, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "D:\Python27\lib\site-packages\werkzeug\wrappers.py", line 827, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "D:\Python27\lib\site-packages\werkzeug\wrappers.py", line 57, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "D:\Python27\lib\site-packages\werkzeug\test.py", line 855, in run_wsgi_app
+    app_iter = app(environ, start_response)
+TypeError: 'dict' object is not callable
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 401, in wrapper
+    return self.make_response(data, code, headers=headers)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 418, in make_response
+    resp = self.representations[mediatype](data, *args, **kwargs)
+  File "E:\coolcard\angcard\juke\__init__.py", line 40, in html
+    resp = make_response(data, code)
+  File "D:\Python27\lib\site-packages\flask\helpers.py", line 183, in make_response
+    return current_app.make_response(args)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1566, in make_response
+    raise ValueError('View function did not return a response')
+ValueError: View function did not return a response
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 257, in error_router
+    return self.handle_error(e)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 307, in handle_error
+    resp = self.make_response(data, code)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 418, in make_response
+    resp = self.representations[mediatype](data, *args, **kwargs)
+  File "E:\coolcard\angcard\juke\__init__.py", line 40, in html
+    resp = make_response(data, code)
+  File "D:\Python27\lib\site-packages\flask\helpers.py", line 183, in make_response
+    return current_app.make_response(args)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1577, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "D:\Python27\lib\site-packages\werkzeug\wrappers.py", line 827, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "D:\Python27\lib\site-packages\werkzeug\test.py", line 855, in run_wsgi_app
+    app_iter = app(environ, start_response)
+TypeError: 'dict' object is not callable
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 401, in wrapper
+    return self.make_response(data, code, headers=headers)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 418, in make_response
+    resp = self.representations[mediatype](data, *args, **kwargs)
+  File "E:\coolcard\angcard\juke\__init__.py", line 40, in html
+    resp = make_response(data, code)
+  File "D:\Python27\lib\site-packages\flask\helpers.py", line 183, in make_response
+    return current_app.make_response(args)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1566, in make_response
+    raise ValueError('View function did not return a response')
+ValueError: View function did not return a response
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 257, in error_router
+    return self.handle_error(e)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 307, in handle_error
+    resp = self.make_response(data, code)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 418, in make_response
+    resp = self.representations[mediatype](data, *args, **kwargs)
+  File "E:\coolcard\angcard\juke\__init__.py", line 40, in html
+    resp = make_response(data, code)
+  File "D:\Python27\lib\site-packages\flask\helpers.py", line 183, in make_response
+    return current_app.make_response(args)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1577, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "D:\Python27\lib\site-packages\werkzeug\wrappers.py", line 827, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "D:\Python27\lib\site-packages\werkzeug\wrappers.py", line 57, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "D:\Python27\lib\site-packages\werkzeug\test.py", line 855, in run_wsgi_app
+    app_iter = app(environ, start_response)
+TypeError: 'dict' object is not callable
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 401, in wrapper
+    return self.make_response(data, code, headers=headers)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 418, in make_response
+    resp = self.representations[mediatype](data, *args, **kwargs)
+  File "E:\coolcard\angcard\juke\__init__.py", line 40, in html
+    resp = make_response(data, code)
+  File "D:\Python27\lib\site-packages\flask\helpers.py", line 183, in make_response
+    return current_app.make_response(args)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1566, in make_response
+    raise ValueError('View function did not return a response')
+ValueError: View function did not return a response
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 257, in error_router
+    return self.handle_error(e)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 307, in handle_error
+    resp = self.make_response(data, code)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 418, in make_response
+    resp = self.representations[mediatype](data, *args, **kwargs)
+  File "E:\coolcard\angcard\juke\__init__.py", line 40, in html
+    resp = make_response(data, code)
+  File "D:\Python27\lib\site-packages\flask\helpers.py", line 183, in make_response
+    return current_app.make_response(args)
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1577, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "D:\Python27\lib\site-packages\werkzeug\wrappers.py", line 827, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "D:\Python27\lib\site-packages\werkzeug\wrappers.py", line 57, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "D:\Python27\lib\site-packages\werkzeug\test.py", line 855, in run_wsgi_app
+    app_iter = app(environ, start_response)
+TypeError: 'dict' object is not callable
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 397, in wrapper
+    resp = resource(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask\views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask\views.py", line 149, in dispatch_request
+    return meth(*args, **kwargs)
+  File "E:\coolcard\angcard\juke\authority.py", line 55, in m
+    ret = func(*args, **kwargs)
+  File "E:\coolcard\angcard\juke\views\psi\sale.py", line 95, in post
+    discount=g['discount']))  # 折扣
+  File "<string>", line 4, in __init__
+  File "D:\Python27\lib\site-packages\sqlalchemy\orm\state.py", line 260, in _initialize_instance
+    return manager.original_init(*mixed[1:], **kwargs)
+  File "D:\Python27\lib\site-packages\sqlalchemy\ext\declarative\base.py", line 525, in _declarative_constructor
+    (k, cls_.__name__))
+TypeError: 'discount' is an invalid keyword argument for SaleOrderDetail
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 397, in wrapper
+    resp = resource(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask\views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask\views.py", line 149, in dispatch_request
+    return meth(*args, **kwargs)
+  File "E:\coolcard\angcard\juke\authority.py", line 55, in m
+    ret = func(*args, **kwargs)
+  File "E:\coolcard\angcard\juke\views\psi\sale.py", line 95, in post
+    discount=g['discount']))  # 折扣
+  File "<string>", line 4, in __init__
+  File "D:\Python27\lib\site-packages\sqlalchemy\orm\state.py", line 260, in _initialize_instance
+    return manager.original_init(*mixed[1:], **kwargs)
+  File "D:\Python27\lib\site-packages\sqlalchemy\ext\declarative\base.py", line 525, in _declarative_constructor
+    (k, cls_.__name__))
+TypeError: 'discount' is an invalid keyword argument for SaleOrderDetail
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 397, in wrapper
+    resp = resource(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask\views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask\views.py", line 149, in dispatch_request
+    return meth(*args, **kwargs)
+  File "E:\coolcard\angcard\juke\authority.py", line 55, in m
+    ret = func(*args, **kwargs)
+  File "E:\coolcard\angcard\juke\views\psi\sale.py", line 95, in post
+    discount=g['discount']))  # 折扣
+  File "<string>", line 4, in __init__
+  File "D:\Python27\lib\site-packages\sqlalchemy\orm\state.py", line 260, in _initialize_instance
+    return manager.original_init(*mixed[1:], **kwargs)
+  File "D:\Python27\lib\site-packages\sqlalchemy\ext\declarative\base.py", line 525, in _declarative_constructor
+    (k, cls_.__name__))
+TypeError: 'discount' is an invalid keyword argument for SaleOrderDetail
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Python27\lib\site-packages\flask_restful-0.2.10-py2.7.egg\flask_restful\__init__.py", line 384, in wrapper
+    resp = resource(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\views.py", line 149, in dispatch_request
+    return meth(*args, **kwargs)
+  File "G:\coolcard\angcard\juke\authority.py", line 55, in m
+    ret = func(*args, **kwargs)
+  File "G:\coolcard\angcard\juke\views\psi\sale.py", line 86, in post
+    q_goods.update({'goods_amount': q_goods.one().goods_amount - g['goods_amount']})
+TypeError: unsupported operand type(s) for -: 'int' and 'unicode'
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Python27\lib\site-packages\flask_restful-0.2.10-py2.7.egg\flask_restful\__init__.py", line 384, in wrapper
+    resp = resource(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\views.py", line 149, in dispatch_request
+    return meth(*args, **kwargs)
+  File "G:\coolcard\angcard\juke\authority.py", line 55, in m
+    ret = func(*args, **kwargs)
+  File "G:\coolcard\angcard\juke\views\psi\sale.py", line 86, in post
+    q_goods.update({'goods_amount': q_goods.one().goods_amount - g['goods_amount']})
+TypeError: unsupported operand type(s) for -: 'int' and 'unicode'
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Python27\lib\site-packages\flask_restful-0.2.10-py2.7.egg\flask_restful\__init__.py", line 384, in wrapper
+    resp = resource(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask-0.10-py2.7.egg\flask\views.py", line 149, in dispatch_request
+    return meth(*args, **kwargs)
+  File "G:\coolcard\angcard\juke\authority.py", line 55, in m
+    ret = func(*args, **kwargs)
+  File "G:\coolcard\angcard\juke\views\psi\sale.py", line 86, in post
+    q_goods.update({'goods_amount': q_goods.one().goods_amount - g['goods_amount']})
+TypeError: unsupported operand type(s) for -: 'int' and 'unicode'
+Internal Error
+Traceback (most recent call last):
+  File "d:\python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "d:\python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "d:\python27\lib\site-packages\flask_restful\__init__.py", line 397, in wrapper
+    resp = resource(*args, **kwargs)
+  File "d:\python27\lib\site-packages\flask\views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "d:\python27\lib\site-packages\flask\views.py", line 149, in dispatch_request
+    return meth(*args, **kwargs)
+  File "E:\coolcard\angcard\juke\authority.py", line 55, in m
+    ret = func(*args, **kwargs)
+  File "E:\coolcard\angcard\juke\views\psi\sale.py", line 57, in post
+    goods_ids = list(set([g['goods_id'] for g in order]))  # 所有订单商品的ID, UNIQUE
+NameError: global name 'order' is not defined
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 397, in wrapper
+    resp = resource(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask\views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask\views.py", line 149, in dispatch_request
+    return meth(*args, **kwargs)
+  File "E:\coolcard\angcard\juke\authority.py", line 55, in m
+    ret = func(*args, **kwargs)
+  File "E:\coolcard\angcard\juke\views\psi\sale.py", line 97, in post
+    for _gid in order_goods_counts.keys:
+TypeError: 'builtin_function_or_method' object is not iterable
+Internal Error
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Python27\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Python27\lib\site-packages\flask_restful\__init__.py", line 397, in wrapper
+    resp = resource(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask\views.py", line 84, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "D:\Python27\lib\site-packages\flask\views.py", line 149, in dispatch_request
+    return meth(*args, **kwargs)
+  File "E:\coolcard\angcard\juke\authority.py", line 55, in m
+    ret = func(*args, **kwargs)
+  File "E:\coolcard\angcard\juke\views\psi\sale.py", line 97, in post
+    for _gid in order_goods_counts.keys:
+TypeError: 'builtin_function_or_method' object is not iterable

@@ -1,0 +1,68 @@
+<div class="col-md-12">	
+	<div class="portlet box blue tabbable">
+		<div class="portlet-title">
+			<div class="caption"><i class="fa fa-reorder"></i>设置中心</div>
+		</div>
+		<div class="portlet-body">
+			<div class=" portlet-tabs">
+				<ul class="nav nav-tabs">
+					<li><a href="#tab_security" data-toggle="tab">安全设置</a></li>
+					<!-- <li class=""><a href="#portlet_tab2" data-toggle="tab">Tab 2</a></li> -->
+					<li class="active"><a href="#tab_my_infor" data-toggle="tab">我的信息</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="tab_my_infor">
+						<legend>账户信息</legend>
+						<div class="alert alert-success">
+							<p>创建时间：{{settings.unit_create_datetime}}</p>
+							<p>账号类型：{{settings.unit_type | unitTypeFilter}}</p>
+							<p>可创建分店数量：{{settings.shop_limit}}个</p>
+							<!--<p>剩余短信条数：{{}}条</p>-->
+						</div>
+
+						<legend>微信</legend>
+						<div class="alert alert-success">
+							<p>微信Token: {{settings.weixin_token}}</p>
+						</div>
+					</div>					
+					<div class="tab-pane" id="tab_security">
+						<!-- BEGIN FORM-->
+						<legend>修改密码</legend>
+						<form class="form-horizontal" ng-submit="updatePassword(password)">
+							<div class="form-body">
+								<div class="form-group">
+									<label class="col-md-3 control-label">原密码</label>
+
+									<div class="col-md-4">
+										<input type="password" ng-model="password.old" class="form-control">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">新密码</label>
+
+									<div class="col-md-4">
+										<input type="password" ng-model="password.new_1" class="form-control">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">再输入一次新密码</label>
+
+									<div class="col-md-4">
+										<input type="password" ng-model="password.new_2" class="form-control">
+									</div>
+								</div>
+												 
+							</div>
+							<div class="form-actions fluid">
+								<div class="col-md-offset-3 col-md-9">
+									<button type="submit" class="btn blue">确定</button>
+								</div>
+							</div>
+						</form>
+						<!-- END FORM-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>	

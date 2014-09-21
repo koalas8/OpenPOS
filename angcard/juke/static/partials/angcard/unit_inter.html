@@ -1,0 +1,93 @@
+<div>
+    <!-- BEGIN PAGE HEADER-->
+    <div class="row">
+        <div class="col-md-12">
+            <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+            <h3 class="page-title">
+                集团互通管理
+                <!-- <small>Units </small> -->
+                <div class="pull-right">
+                    <button class="btn btn-primary" ng-show="root.menu.show('00700')" ng-click="menu.action='add'">添加</button>
+                    <button class="btn btn-primary" ng-show="root.menu.show('00702')" ng-click="showList(query.page)">列表</button>
+                </div>
+            </h3>
+            <!-- END PAGE TITLE & BREADCRUMB-->
+        </div>
+    </div>
+    <!-- END PAGE HEADER-->
+
+    <div class="portlet box blue" ng-show="(menu.action=='add') || (menu.action=='update')">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="icon-reorder"></i>
+                添加集团互通
+            </div>
+        </div>
+        <div class="portlet-body form">
+            <!-- BEGIN FORM-->
+            <form class="form-horizontal" ng-submit="submit(interInfo)">
+                <div class="form-body">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">发卡集团</label>
+
+                        <div class="col-md-4">
+                            <select ng-model="interInfo.credit_unit" ng-options="u.unit_no as u.unit_name for u in units" class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">收单集团</label>
+
+                        <div class="col-md-4">
+                            <select ng-model="interInfo.debit_unit" ng-options="u.unit_no as u.unit_name for u in units" class="form-control"></select>
+                        </div>
+                    </div>
+                                 
+                </div>
+                <div class="form-actions fluid">
+                    <div class="col-md-offset-3 col-md-9">
+                        <button type="submit" class="btn blue">确定</button>
+                        <button type="button" class="btn default" ng-click="setAction('list')">取消</button>
+                    </div>
+                </div>
+            </form>
+            <!-- END FORM-->
+        </div>
+    </div>
+
+
+
+
+    <div class="row" ng-show="menu.action=='list'">
+        <div class="col-md-12">
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th width="50">序号</th>
+                    <th>发卡集团</th>
+                    <th>收单集团</th>
+                    <th width="50">状态</th>
+                    <th ng-show="root.menu.show('00701')">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="interinfo in interStore.data">
+                    <td>{{(interStore.page - 1) * interStore.limit + $index + 1}}</td>
+                    <td>{{interinfo.credit_unit}}</td>
+                    <td>{{interinfo.debit_unit}}</td>
+                    <td>
+                        <span ng-show="interinfo.status=='0'" class="badge badge-success">&nbsp;&nbsp;</span>
+                        <span ng-show="interinfo.status=='1'" class="badge badge-important">&nbsp;&nbsp;</span>
+                    </td>
+                    <td>
+                        <a href="javascript:;" ng-show="root.menu.show('00701')" ng-click="delete(interinfo.id)">
+                            <span ng-show="interinfo.status=='0'">停用</span>
+                            <span ng-show="interinfo.status=='1'">启用</span>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <paginator></paginator>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<ul class="pagination">
+	<!-- 首页-->
+	<li ng-click="gotoPage(1)">
+		<a href="javascript:;">
+            <i class="fa fa-fast-backward"></i>
+		</a>
+	</li>
+
+	<li ng-repeat="p in pageBar.pages" ng-click="gotoPage(p)">
+		<a href="javascript:;">{{p}}</a>
+	</li>
+
+	<!-- 末页 -->
+	<li ng-click="gotoPage(pageBar.last)">
+	    <a href="javascript:;">
+            <i class="fa fa-fast-forward"></i>
+	    </a>
+	</li>
+
+    <!--刷新-->
+    <li ng-click="gotoPage(pageBar.current)">
+        <a href="javascript:;">
+            <i class="fa fa-refresh"></i>
+        </a>
+    </li>
+</ul>

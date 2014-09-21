@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!-- 
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.0
+Version: 1.5.2
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+	<meta charset="utf-8" />
+	<title>聚客 | 您的店铺管家</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<meta name="MobileOptimized" content="320">
+	<!-- BEGIN GLOBAL MANDATORY STYLES -->          
+	<link href="/static/lib/metronic/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/lib/metronic/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/lib/metronic/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+	<!-- END GLOBAL MANDATORY STYLES -->
+	<!-- BEGIN PAGE LEVEL STYLES --> 
+	<link rel="stylesheet" type="text/css" href="assets/plugins/select2/select2_metro.css" />
+	<!-- END PAGE LEVEL SCRIPTS -->
+	<!-- BEGIN THEME STYLES --> 
+	<link href="/static/lib/metronic/css/style-metronic.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/lib/metronic/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/lib/metronic/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/lib/metronic/css/plugins.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/lib/metronic/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+	<link href="/static/lib/metronic/css/pages/login.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/lib/metronic/css/custom.css" rel="stylesheet" type="text/css"/>
+	<!-- END THEME STYLES -->
+	<link rel="shortcut icon" href="favicon.ico" />
+</head>
+<!-- BEGIN BODY -->
+<body class="login">
+	<!-- BEGIN LOGO -->
+	<div class="logo">
+		<!-- <img src="/static/img/logo.png" style="width:100px; height: 100px;" />  -->
+	</div>
+	<!-- END LOGO -->
+	<!-- BEGIN LOGIN -->
+	<div class="content">
+		<!-- BEGIN LOGIN FORM -->
+		<form class="login-form" action="" method="post">
+			<h3 class="form-title">注册 | 聚客</h3>			
+			<div class="form-group">
+				<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+				<label class="control-label visible-ie8 visible-ie9">用户名</label>
+				<div class="input-icon">
+					<i class="fa fa-user"></i>
+					<input class="form-control placeholder-no-fix" type="text" placeholder="请输入您的邮箱" name="user_no" value="{{user_no}}"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label visible-ie8 visible-ie9">密码</label>
+				<div class="input-icon">
+					<i class="fa fa-lock"></i>
+					<input class="form-control placeholder-no-fix" type="password" placeholder="密码" name="password"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label visible-ie8 visible-ie9">再输一次密码</label>
+				<div class="input-icon">
+					<i class="fa fa-lock"></i>
+					<input class="form-control placeholder-no-fix" type="password" placeholder="再输一次密码" name="repassword"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label visible-ie8 visible-ie9">店铺名称</label>
+				<div class="input-icon">
+					<i class="fa fa-lock"></i>
+					<input class="form-control placeholder-no-fix" type="text" placeholder="给您的店铺起个名吧" name="shp_name"/>
+				</div>
+			</div>
+			<div class="form-actions">
+				<label class="checkbox">
+				<!-- <input type="checkbox" name="remember" value="1"/> 记住我的登录状态 -->
+				</label>
+				<button type="submit" class="btn green pull-right">
+				确认 <i class="m-icon-swapright m-icon-white"></i>
+				</button>            
+			</div>
+			{% if msg %}
+			<div class="alert {% if success %} alert-success {% else %} alert-danger {% endif %}">{{msg}}</div>
+			{% endif %}
+		</form>
+		<!-- END LOGIN FORM -->        
+		<!-- BEGIN FORGOT PASSWORD FORM -->
+	</div>
+	<!-- END LOGIN -->
+	<!-- BEGIN COPYRIGHT -->
+	<!-- <div class="copyright">
+		2013 &copy; CoolCard Crop.
+	</div> -->
+	<!-- END COPYRIGHT -->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcb90de1e3052d7e0d99fa2dbc4778a95' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+    </body>
+<!-- END BODY -->
+</html>

@@ -1,0 +1,95 @@
+<html xmlns:wb="http://open.weibo.com/wb">
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+	<meta charset="utf-8" />
+	<title>{% include "title.txt" %}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<meta name="MobileOptimized" content="320">
+	<!-- BEGIN GLOBAL MANDATORY STYLES -->          
+	<link href="/static/lib/metronic/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/lib/metronic/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/lib/metronic/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+	<!-- END GLOBAL MANDATORY STYLES -->
+	<!-- BEGIN PAGE LEVEL STYLES --> 
+	<link rel="stylesheet" type="text/css" href="assets/plugins/select2/select2_metro.css" />
+	<!-- END PAGE LEVEL SCRIPTS -->
+	<!-- BEGIN THEME STYLES --> 
+	<link href="/static/lib/metronic/css/style-metronic.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/lib/metronic/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/lib/metronic/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/lib/metronic/css/plugins.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/lib/metronic/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+	<link href="/static/lib/metronic/css/pages/login.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/lib/metronic/css/custom.css" rel="stylesheet" type="text/css"/>
+	<!-- END THEME STYLES -->
+	<link rel="shortcut icon" href="favicon.ico" />
+</head>
+<!-- BEGIN BODY -->
+<body class="login"  style="background-image: url('/static/img/bg-login.gif')">
+	<!-- BEGIN LOGO -->
+	<div class="logo">
+		<!-- <img src="/static/img/logo.png" style="width:100px; height: 100px;" />  -->
+	</div>
+	<!-- END LOGO -->
+	<!-- BEGIN LOGIN -->
+	<div class="content">
+		<!-- BEGIN LOGIN FORM -->
+		<form class="login-form" action="/weibo/sina/reg" method="post">
+			<h3 class="form-title">使用新浪微博账号注册 | 聚客</h3>
+			<div class="form-group">
+				<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+				<label class="control-label visible-ie8 visible-ie9">邮箱</label>
+				<div class="input-icon">
+					<i class="fa fa-user"></i>
+					<input class="form-control placeholder-no-fix" type="text" placeholder="邮箱" name="email"
+                           value="{{email}}"/>
+                    <a href="javascript:;" id="btnSendPassCode" class="btn green pull-right">发送校验码</a>
+				</div>
+			</div>
+			<div class="form-group" style="visibility: hidden;">
+                <div id="alertSendPassCodeSuccess" class="alert alert-success hidden">验证码发送成功，请登录您的邮箱收取验证码，并填写在下面的表单中</div>
+				<label class="control-label visible-ie8 visible-ie9">校验码</label>
+				<div class="input-icon">
+					<i class="fa fa-lock"></i>
+					<input class="form-control placeholder-no-fix" placeholder="校验码" name="pass_code"/>
+				</div>
+			</div>
+			<div class="form-actions">
+				<a href="javascript:;" class="btn green pull-right">
+				我没有聚客账号，我需要注册一个新账号 <i class="m-icon-swapright m-icon-white"></i>
+				</a>
+			</div>
+			{% if error %}
+			<div>{{error}}</div>
+			{% endif %}
+		</form>
+		<!-- END LOGIN FORM -->        
+		<!-- BEGIN FORGOT PASSWORD FORM -->
+	</div>
+	<!-- END LOGIN -->
+	<!-- BEGIN COPYRIGHT -->
+	<!-- <div class="copyright">
+		2013 &copy; CoolCard Crop.
+	</div> -->
+	<!-- END COPYRIGHT -->
+    {% include "baidu_tongji.txt" %}
+</body>
+<!-- END BODY -->
+<script>
+    $(document).ready(function(){
+        $('#btnSendPassCode').live('click', function(){
+            $.post('/weibo/sina/register/process', {email: $('#email').val()}, function(result){
+               if(result.success == true){
+                    $('#alertSendPassCodeSuccess').removeClass('hidden').addClass('show');
+               }
+            });
+        });
+    });
+</script>
+</html>

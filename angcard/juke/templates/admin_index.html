@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]>
+<html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="zh_CN" class="no-js"> <!--<![endif]-->
+
+
+<!-- BEGIN HEAD -->
+<head>
+	<meta charset="utf-8"/>
+	<title>{% include "title.txt" %}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+	<meta content="" name="description"/>
+	<meta content="" name="author"/>
+	<meta name="MobileOptimized" content="320">
+
+	<!-- 全局CSS样式 -->
+	<link href="/static/lib/metronic/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/lib/metronic/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/lib/metronic/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+	<!-- .// 全局CSS样式 -->
+
+	<!--  插件CSS样式 -->
+	<link href="/static/lib/metronic/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/lib/metronic/plugins/fuelux/css/tree-metronic.css" rel="stylesheet" type="text/css" />
+	<link href="/static/lib/metronic/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/lib/metronic/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/lib/metronic/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/lib/metronic/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/lib/pick-a-color/build/1.2.3/css/pick-a-color-1.2.3.min.css" rel="stylesheet" type="text/css"/>
+	<!-- .// 插件CSS样式 -->
+
+	<!-- 主题CSS样式 -->
+	<link href="/static/lib/metronic/css/style-metronic.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/lib/metronic/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/lib/metronic/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/lib/metronic/css/plugins.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/lib/metronic/css/pages/tasks.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/lib/metronic/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+	<!-- <link href="/static/lib/metronic/plugins/select2/select2_metro.css" rel="stylesheet" type="text/css"> -->
+	<link href="/static/lib/metronic/css/custom.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/plugins/pnotify/jquery.pnotify.default.css" type="text/css">
+	<link href="/static/lib/metronic/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css">
+	<link href="/static/css/default.css" rel="stylesheet" type="text/css">
+	<link href="/static/lib/angular-bootstrap-nav-tree/dist/abn_tree.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/lib/bgrins-spectrum/spectrum.css" rel="stylesheet"/>
+	<!-- .// 主题CSS样式 -->
+
+	<!-- 自定义主题样式 -->
+	<link rel="stylesheet" type="text/css" href="/static/plugins/layer/skin/layer.css">
+	<!--  .// 自定义主题样式 -->
+
+	<!-- favicon -->
+	<link rel="shortcut icon" href="favicon.ico"/>
+	<!-- .// favicon -->
+</head>
+<!-- END HEAD -->
+
+
+<!-- BEGIN BODY -->
+<body class="page-header-fixed" ng-app="angcardApp" ng-controller="RootCtrl">
+	<!-- 打印控件 -->
+	<object id="LODOP_OB" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=0 height=0>
+		<embed id="LODOP_EM" type="application/x-print-lodop" width=0 height=0></embed>
+	</object>
+	<!-- ..// 打印控件 -->
+<!-- BEGIN HEADER -->
+<div class="header navbar navbar-inverse navbar-fixed-top">
+<!-- BEGIN TOP NAVIGATION BAR -->
+<div class="header-inner">
+<!-- BEGIN LOGO -->
+<span class="navbar-brand" style="padding-top: 5px;">
+	<img src="/static/img/logo.png" alt="logo" class="img-responsive" style="width: 30px; height: 30px;"/>
+</span>
+<!-- END LOGO -->
+<!-- BEGIN RESPONSIVE MENU TOGGLER -->
+<a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	<img src="/static/lib/metronic/img/menu-toggler.png" alt=""/>
+</a>
+<!-- END RESPONSIVE MENU TOGGLER -->
+<!-- BEGIN TOP NAVIGATION MENU -->
+<ul class="nav navbar-nav pull-right">
+<!-- BEGIN NOTIFICATION DROPDOWN -->
+<li class="dropdown" id="header_notification_bar" style="outline: 0px; box-shadow: rgba(102, 188, 230, 0) 0px 0px 13px; outline-offset: 20px;" ng-show="root.notice.count()>0">
+	<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+	<i class="fa fa-bell-o"></i>
+	<span class="badge">{{ '{{' }}root.notice.count() {{ '}}' }}</span>
+	</a>
+	<ul class="dropdown-menu extended notification">
+		<li>
+			<p>{{ '{{' }} root.notice.count() {{ '}}' }}条新消息</p>
+		</li>
+		<li>
+			<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 250px;"><ul class="dropdown-menu-list scroller" style="height: 250px; overflow: hidden; width: auto;">
+				<li ng-repeat="n in $storage.notices">
+					<a href="javascript:;" ng-click="root.notice.click(n.id, n.event)">
+						<span class="label label-sm label-icon label-danger"><i class="fa fa-bell-o"></i></span>
+						{{ '{{' }} n.title {{ '}}' }}
+						<span class="time">{{ '{{' }} n.time {{ '}}' }}</span>
+					</a>
+				</li>
+			</ul><div class="slimScrollBar" style="background-color: rgb(161, 178, 189); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 1px; background-position: initial initial; background-repeat: initial initial;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; background-color: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px; background-position: initial initial; background-repeat: initial initial;"></div></div>
+		</li>
+		<li class="external" ng-show="root.notice.count() > 5">
+			<a href="#">查看所有消息 <i class="m-icon-swapright"></i></a>
+		</li>
+	</ul>
+</li>
+
+<li class="dropdown user">
+	<a href="index.html#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+		 <img alt="" src="{{ profile_image }}" style="width: 30px; height: 30px;"/>
+		<span class="username">{{real_name}}</span>
+		<i class="icon-angle-down"></i>
+	</a>
+	<ul class="dropdown-menu">
+		<li>
+			<a href="#!/myprofile">
+				<i class="fa fa-cogs"></i>
+				个人中心
+				<span class="badge badge-success">7</span>
+			</a>
+		</li>
+		<li>
+			<a href="javascript:;" id="trigger_fullscreen">
+				<i class="fa fa-fullscreen"></i>
+				全屏模式
+			</a>
+		</li>
+		<li class="divider"></li>
+		<li>
+			<a href="/logout">
+				退出系统 <i class="fa fa-arrow-circle-o-right"></i>
+			</a>
+		</li>
+	</ul>
+</li>
+<!-- END USER LOGIN DROPDOWN -->
+</ul>
+<!-- END TOP NAVIGATION MENU -->
+</div>
+<!-- END TOP NAVIGATION BAR -->
+</div>
+<!-- END HEADER -->
+<div class="clearfix"></div>
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+	<!-- BEGIN SIDEBAR -->
+	<div class="page-sidebar navbar-collapse collapse">
+		<!-- BEGIN SIDEBAR MENU -->
+		<ul class="page-sidebar-menu">
+			<li>
+				<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+				<div class="sidebar-toggler hidden-phone"></div>
+				<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+			</li>
+			<li>
+				<!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+				<!-- <form class="sidebar-search" action="extra_search.html" method="POST">
+					<div class="form-container">
+						<div class="input-box">
+							<a href="javascript:;" class="remove"></a>
+							<input type="text" placeholder="Search..."/>
+							<input type="button" class="submit" value=" "/>
+						</div>
+					</div>
+				</form> -->
+				<!-- END RESPONSIVE QUICK SEARCH FORM -->
+			</li>
+			<!--<li class="start active ">-->
+			<!--<a href="index.html">-->
+			<!--<i class="icon-home"></i> -->
+			<!--<span class="title">Dashboard</span>-->
+			<!--<span class="selected"></span>-->
+			<!--</a>-->
+			<!--</li>-->
+
+			<li class="" ng-show="root.menu.show('00200-00201-00202-00203-00204-00206-00400-00401-00402-00403-00700-00701-00703-00500-00501-00502-00503-00600-00601-00602-00603-00604')">
+				<a href="javascript:;">
+					<i class="fa fa-desktop"></i>
+					<span class="title">系统</span>
+					<span class="arrow "></span>
+				</a>
+				<ul class="sub-menu">
+					<li><a ng-show="root.menu.show('00200-00201-00202-00203-00204-00206')" href="#!/user">系统用户</a></li>
+					<li><a ng-show="root.menu.show('00400-00401-00402-00403')" href="#!/unit">集团</a></li>
+					<li><a ng-show="root.menu.show('00700-00701-00703')" href="#!/unit_inter">集团互通</a></li>
+					<li><a ng-show="root.menu.show('00500-00501-00502-00503')" href="#!/shop">商户</a></li>
+					<li><a ng-show="root.menu.show('00600-00601-00602-00603-00604')" href="#!/terminal">终端</a></li>
+					<li><a ng-show="root.menu.show('00100-00101-00102-00103')" href="#!/role">权限</a></li>
+				</ul>
+			</li>
+
+			<li class="" ng-show="root.menu.show('00800-00802-00804-00805-00806-00807')">
+				<a href="javascript:;">
+					<i class="fa fa-credit-card"></i>
+					<span class="title">卡</span>
+					<span class="arrow "></span>
+				</a>
+				<ul class="sub-menu">
+					<li><a ng-show="root.menu.show('01107')" href="#!/webpos">WEB刷卡终端</a></li>
+					<li><a ng-show="root.menu.show('00800')" href="#!/card/info">卡信息查询</a></li>
+					<li><a ng-show="root.menu.show('00802')" href="#!/card/trans">卡交易流水</a></li>
+					<li><a ng-show="root.menu.show('00804-00805-00806-00807')" href="#!/card/group">卡分组设置</a></li>
+					<!-- <li><a ng-show="root.menu.show('')" href="#!/card/discount">卡折扣设置</a></li> -->
+				</ul>
+			</li>
+
+			<li class="" ng-show="root.menu.show('00901-00902-00903')">
+				<a href="javascript:;">
+					<i class="fa fa-bar-chart-o"></i>
+					<span class="title">报表</span>
+					<span class="arrow "></span>
+				</a>
+				<ul class="sub-menu">
+					<li><a ng-show="root.menu.show('00901')" href="#!/report/unit/mx">集团交易流水明细</a></li>
+					<li><a ng-show="root.menu.show('00902')" href="#!/report/shop/mx">商户交易流水明细</a></li>
+					<li><a ng-show="root.menu.show('00903')" href="#!/report/terminal/mx">终端交易流水明细</a></li>
+				</ul>
+			</li>
+
+			<li class="" ng-show="root.menu.show('01101-01300-01301-01302-01100-01101-01102-01103')">
+				<a href="javascript:;">
+					<i class="fa fa-money"></i>
+					<span class="title">进销存</span>
+					<span class="arrow "></span>
+				</a>
+				<ul class="sub-menu">
+					<!-- <li><a ng-show="root.menu.show('')" href="#!/supplier">供应商</a></li> -->
+					<li><a ng-show="root.menu.show('01101')" href="#!/sale">销售</a></li>
+					<li><a ng-show="root.menu.show('01300-01301-01302')" href="#!/warehouse">仓库</a></li>
+					<li><a ng-show="root.menu.show('01100-01101-01102-01103')" href="#!/goods">商品资料维护</a></li>
+                    <li><a href="#!/report/sale">销售报表</a></li>
+				</ul>
+			</li>
+
+			<li>
+				<a href="javascript:;">
+					<i class="fa fa-money"></i>
+					<span class="title">服装鞋帽进销存</span>
+					<span class="arrow"></span>
+				</a>
+				<ul class="sub-menu">
+					<!-- <li><a href="#!/sizeGroup">尺寸组管理</a></li> -->
+					<li><a href="#!/supplier">供应商管理</a></li>
+                    <li><a href="#!/purchase_order">采购管理</a></li>
+				</ul>
+			</li>
+
+			<li class="">
+				<a href="javascript:;">
+					<i class="fa fa-user"></i>
+					<span class="title">会员</span>
+					<span class="arrow"></span>
+				</a>
+				<ul class="sub-menu">
+					<li><a ng-show="root.menu.show('01000-01001-01002-01003')" href="#!/member">会员管理</a></li>
+					<!-- <li><a href="#!/settings/sms">短信模板</a></li> -->
+				</ul>
+			</li>
+
+			<li class="" ng-show="root.menu.show('01000-01001-01002-01003')">
+				<a href="javascript:;">
+					<i class="fa fa-cogs"></i>
+					<span class="title">设置</span>
+					<span class="arrow "></span>
+				</a>
+				<ul class="sub-menu">
+					<li><a href="#!/settings/sys">系统设置</a></li>
+                   <!-- <li><a href="#!/settings/weixin">微信设置</a></li> -->
+				</ul>
+			</li>
+
+			<li class="">
+				<a href="javascript:;">
+					<i class="fa fa-comments"></i>
+					<span class="title">反馈</span>
+				</a>
+			</li>
+		</ul>
+		<!-- END SIDEBAR MENU -->
+	</div>
+	<!-- END SIDEBAR -->
+	<!-- BEGIN PAGE -->
+	<div class="page-content">
+		<!-- BEGIN STYLE CUSTOMIZER -->
+		<!--<div class="theme-panel hidden-xs hidden-sm">-->
+		<!--<div class="toggler"></div>-->
+		<!--<div class="toggler-close"></div>-->
+		<!--<div class="theme-options">-->
+		<!--<div class="theme-option theme-colors clearfix">-->
+		<!--<span>THEME COLOR</span>-->
+		<!--<ul>-->
+		<!--<li class="color-black current color-default" data-style="default"></li>-->
+		<!--<li class="color-blue" data-style="blue"></li>-->
+		<!--<li class="color-brown" data-style="brown"></li>-->
+		<!--<li class="color-purple" data-style="purple"></li>-->
+		<!--<li class="color-grey" data-style="grey"></li>-->
+		<!--<li class="color-white color-light" data-style="light"></li>-->
+		<!--</ul>-->
+		<!--</div>-->
+		<!--<div class="theme-option">-->
+		<!--<span>Layout</span>-->
+		<!--<select class="layout-option form-control input-small">-->
+		<!--<option value="fluid" selected="selected">Fluid</option>-->
+		<!--<option value="boxed">Boxed</option>-->
+		<!--</select>-->
+		<!--</div>-->
+		<!--<div class="theme-option">-->
+		<!--<span>Header</span>-->
+		<!--<select class="header-option form-control input-small">-->
+		<!--<option value="fixed" selected="selected">Fixed</option>-->
+		<!--<option value="default">Default</option>-->
+		<!--</select>-->
+		<!--</div>-->
+		<!--<div class="theme-option">-->
+		<!--<span>Sidebar</span>-->
+		<!--<select class="sidebar-option form-control input-small">-->
+		<!--<option value="fixed">Fixed</option>-->
+		<!--<option value="default" selected="selected">Default</option>-->
+		<!--</select>-->
+		<!--</div>-->
+		<!--<div class="theme-option">-->
+		<!--<span>Footer</span>-->
+		<!--<select class="footer-option form-control input-small">-->
+		<!--<option value="fixed">Fixed</option>-->
+		<!--<option value="default" selected="selected">Default</option>-->
+		<!--</select>-->
+		<!--</div>-->
+		<!--</div>-->
+		<!--</div>-->
+		<!-- END BEGIN STYLE CUSTOMIZER -->
+		<!-- BEGIN PAGE HEADER-->
+		<div ng-view></div>
+	</div>
+
+    <!--BEGIN NOTICE DETAIL MODAL-->
+    <div class="modal fade" id="noticeModal" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="root.notice.remove(root.notice.current.id)"></button>
+                    <h4 class="modal-title">{{ '{{' }}root.notice.current.title{{ '}}' }}</h4>
+                </div>
+                <div class="modal-body">
+                    {{ '{{' }}root.notice.current.content{{ '}}' }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn blue" data-dismiss="modal" ng-click="root.notice.remove(root.notice.current.id)">确定</button>
+                    <!-- <button type="button" class="btn blue">Save changes</button> -->
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- END NOTICE DETAIL MODAL -->
+
+    <!-- BEGIN SMS MODAL -->
+    <div id="SMSModal" class="modal fade" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+					<h4 class="modal-title">短信发送列表</h4>
+				</div>
+				<div class="modal-body">
+					<div class="scroller" style="height:300px" data-always-visible="1" data-rail-visible1="1">
+						<div class="row">
+							<div class="col-md-12">
+								<table class="table table-striped table-bordered">
+									<thead>
+										<tr>
+											<th>序号</th>
+											<th>会员姓名</th>
+											<th>手机号</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="m in root.member.get()">
+											<td>{{ '{{' }} $index+1 {{ '}}' }}</td>
+											<td>{{ '{{' }} m.member_name {{ '}}' }}</td>
+											<td>{{ '{{' }} m.phone {{ '}}' }}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" data-dismiss="modal" class="btn default">关闭</button>
+					<button type="button" class="btn green">发送短信</button>
+				</div>
+			</div>
+		</div>
+	</div>
+    <!-- END SMS MODAL -->
+
+	<!-- END PAGE -->
+</div>
+
+<!-- BEGIN GLOBAL WIDGETS -->
+
+<!-- END GLOBAL WIDGETS -->
+
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<!-- <div class="footer">
+	<div class="footer-inner">
+		2013 &copy; Metronic by keenthemes.
+	</div>
+	<div class="footer-tools">
+		 <span class="go-top">
+		 <i class="icon-angle-up"></i>
+		 </span>
+	</div>
+</div> -->
+<!-- END FOOTER -->
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+<!-- BEGIN CORE PLUGINS -->
+<!--[if lt IE 9]>
+<script src="/static/lib/metronic/plugins/respond.min.js"></script>
+<script src="/static/lib/metronic/plugins/excanvas.min.js"></script>
+<![endif]-->
+<script src="/static/lib/metronic/plugins/jquery-1.10.2.min.js" ></script>
+<script src="/static/lib/metronic/plugins/jquery-migrate-1.2.1.min.js" ></script>
+
+<script src="/static/lib/jquery/jquery.json-2.4.min.js"></script>
+
+<!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+<script src="/static/lib/metronic/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" ></script>
+<script src="/static/lib/metronic/plugins/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/static/lib/metronic/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js"></script>
+<script src="/static/lib/metronic/plugins/jquery-slimscroll/jquery.slimscroll.min.js" ></script>
+<script src="/static/lib/metronic/plugins/jquery.blockui.min.js"></script>
+<script src="/static/lib/metronic/plugins/jquery.cookie.min.js"></script>
+<script src="/static/lib/metronic/plugins/uniform/jquery.uniform.min.js" ></script>
+<script src="/static/lib/pick-a-color/build/dependencies/tinycolor-0.9.15.min.js"></script>
+<script src="/static/lib/pick-a-color/build/1.2.3/js/pick-a-color-1.2.3.min.js"></script>
+<!-- <script src="/static/lib/metronic/plugins/select2/select2.min.js"></script>
+<script src="/static/lib/metronic/plugins/select2/select2_locale_zh-CN.js"></script> -->
+<script type="text/javascript" src="/static/lib/metronic/plugins/bootstrap-daterangepicker/moment.min.js"></script>
+<script type="text/javascript" src="/static/lib/metronic/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="/static/js/global.js"></script>
+<script src="/static/plugins/angcard/angcard.js"></script>
+
+<!-- END CORE PLUGINS -->
+
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="/static/plugins/bootbox/bootbox.js" ></script>
+<script src="/static/plugins/pnotify/jquery.pnotify.min.js"></script>
+<script src="/static/lib/metronic/scripts/app.js" ></script>
+<script src="/static/lib/UUID.js"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
+
+<!-- BEGIN CUSTOM PLUGINS -->
+<script src="/static/plugins/layer/layer.min.js"></script>
+<script src="/static/lib/custom-extends.js"></script>
+<script src="/static/lib/lodop/LodopFuncs.js"></script>
+<script src="/static/js/printer.js"></script>
+<!-- END CUSTOM PLUGINS -->
+
+<!-- <script src="/static/lib/angular/angular.js"></script>
+<script src="/static/lib/angular/angular-route.js"></script>
+<script src="/static/lib/angular/angular-resource.js"></script>
+<script src="/static/lib/angular/angular-animate.js"></script> -->
+
+<script src="/static/lib/angular-1.3/angular.js"></script>
+<script src="/static/lib/angular-1.3/angular-route.js"></script>
+<script src="/static/lib/angular-1.3/angular-resource.js"></script>
+<script src="/static/lib/angular-1.3/angular-animate.js"></script>
+
+<script src="/static/lib/angular-ui/select2.js"></script> <!-- 要在angular.js后引入，且需要select2.min.js插件 -->
+<script src="/static/lib/bgrins-spectrum/spectrum.js"></script>
+<script src="/static/lib/angular-spectrum-colorpicker/dist/angular-spectrum-colorpicker.min.js"></script>
+
+<script src="/static/app/app.js"></script>
+<script src="/static/app/controllers.js"></script>
+<script src="/static/app/directives.js"></script>
+<script src="/static/app/filters.js"></script>
+<script src="/static/app/services.js"></script>
+
+<!-- imported after angular -->
+<script type="text/javascript" src="/static/plugins/ng-bs-daterangepicker/ng-bs-daterangepicker.js"></script>
+<script src="/static/lib/ngStorage/ngStorage.min.js"></script>
+<script src="/static/lib/angular-bootstrap-nav-tree/dist/abn_tree_directive.js"></script>
+<script src="/static/js/jukePaginator/jukePaginator.js"></script>
+<script src="/static/js/pick-a-color-directive.js"></script>
+
+<script>
+	jQuery(document).ready(function () {
+		App.init(); // initlayout and core plugins
+	});
+</script>
+<!-- END JAVASCRIPTS -->
+{% include "baidu_tongji.txt" %}
+</body>
+<!-- END BODY -->
+</html>

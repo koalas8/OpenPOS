@@ -1,0 +1,107 @@
+<!-- BEGIN PAGE HEADER-->
+<div class="row">
+	<div class="col-md-12">
+		<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+		<h3 class="page-title">
+			商品管理
+			<small>Goods</small>
+		</h3>
+		<!-- END PAGE TITLE & BREADCRUMB-->
+	</div>
+</div>
+<!-- END PAGE HEADER-->
+
+<!--添加商品基本信息-->
+<div class="modal fade" id="addGoodsInfoModal" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title">添加商品信息</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<form class="form-horizontal" ng-submit="addGoods(goods)">
+						<div class="form-body">
+							<div class="form-group">
+								<label class="col-md-3 control-label">商品名称</label>
+								<div class="col-md-8">
+									<input type="text" ng-model="goods.goods_name" class="form-control" placeholder="输入商品名称">
+									<input type="hidden" ng-model="goods.id"> <!--used for update goods info -->
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">条码</label>
+								<div class="col-md-8">
+									<input type="text" ng-model="goods.barcode" class="form-control" placeholder="输入条码">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">供应商</label>
+								<div class="col-md-8">
+									<select class="form-control"
+											ng-model="goods.supplier_id"
+											ng-options="s.id as s.supplier_name for s in supplierStore.data">
+									</select>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button class="btn btn-primary" ng-click="addGoods(goods)">确定</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!--///添加商品基本信息-->
+
+<!--商品列表-->
+<div class="row" style="margin-bottom: 20px;">
+	<span class="btn green" ng-show="treeSource.length==0" ng-click="addGoodsClass(true)">
+		还没设置分类？点此添加
+	</span>
+	<span class="btn green" ng-show="treeSource.length>0" ng-click="addGoodsClass(true)">
+		添加根分类
+	</span>
+	<span class="btn green" ng-show="branch != null" ng-click="addGoodsClass()">
+		为所选分类添加子分类
+	</span>
+	<span class="btn btn-primary" ng-click="showAddGoodsForm()">添加商品信息</span>
+</div>
+<div class="row">
+	<div class="col-md-3 alert alert-info">
+		<abn-tree tree-data="treeSource" tree-control="tree" on-select="showChildNode(branch)"></abn-tree>
+	</div>
+	<div class="col-md-9">
+		<table class="table table-striped table-bordered">
+			<thead>
+			<tr>
+				<th width="50">序号</th>
+				<th>商品名称</th>
+				<th ng-show="root.menu.show('01101')"></th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="goods in collection.data">
+				<td>{{(collection.page - 1) * collection.limit + $index + 1}}</td>
+				<td>{{goods.goods_name}}</td>
+				<td ng-show="root.menu.show('01101')">
+					<span ng-click="update($index)">修改</span>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+		<juke-pagination collection="collection"
+			url="searchGoodsURL"
+			templateUrl="/static/js/jukePaginator/template.html"
+			page="1"
+			limit="10">
+		</juke-pagination>
+	</div>
+</div>
+<!--///商品列表-->

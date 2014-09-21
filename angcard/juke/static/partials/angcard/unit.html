@@ -1,0 +1,111 @@
+<div>
+    <!-- BEGIN PAGE HEADER-->
+    <div class="row">
+        <div class="col-md-12">
+            <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+            <h3 class="page-title">
+                集团管理
+                <small>Units</small>
+                <div class="pull-right">
+                    <button class="btn btn-primary" ng-show="root.menu.show('00400')" ng-click="menu.action='add'">
+                        添加
+                        <li class="fa fa-plus"></li>
+                    </button>
+                    <button class="btn btn-primary" ng-show="root.menu.show('00402')" ng-click="showList(query.page)">
+                        列表
+                        <li class="fa fa-list-ol"></li>
+                    </button>
+                </div>
+            </h3>
+            <!-- END PAGE TITLE & BREADCRUMB-->
+        </div>
+    </div>
+    <!-- END PAGE HEADER-->
+
+    <div class="portlet box blue" ng-show="(menu.action=='add') || (menu.action=='update')">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="icon-reorder"></i>
+                添加集团
+            </div>
+        </div>
+        <div class="portlet-body form">
+            <!-- BEGIN FORM-->
+            <form class="form-horizontal" ng-submit="submit()">
+                <div class="form-body">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">集团编号</label>
+
+                        <div class="col-md-4">
+                            <input type="text" name="unit_no" ng-model="unit.unit_no" ng-readonly="menu.action=='update'" class="form-control" placeholder="输入集团编号">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">集团名称</label>
+
+                        <div class="col-md-4">
+                            <input type="text" name="unit_name" ng-model="unit.unit_name" class="form-control" placeholder="输入集团名称">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">状态</label>
+
+                        <div class="col-md-4">
+                            <label class="radio-inline">
+                                <input name="status" type="radio" ng-checked="(unit.status=='0') || (menu.action=='add')" ng-model="unit.status" value="0">正常
+                            </label>
+                            <label class="radio-inline">
+                                <input name="status" type="radio" ng-checked="unit.status=='1'" ng-model="unit.status" value="1">禁用
+                            </label>                            
+                        </div>
+                    </div>                  
+                </div>
+                <div class="form-actions fluid">
+                    <div class="col-md-offset-3 col-md-9">
+                        <button type="submit" class="btn blue">确定</button>
+                        <button type="button" class="btn default" ng-click="setAction('list')">取消</button>
+                    </div>
+                </div>
+            </form>
+            <!-- END FORM-->
+        </div>
+    </div>
+
+
+
+
+    <div class="row" ng-show="menu.action=='list'">
+        <div class="col-md-12">
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th width="50">序号</th>
+                    <th>集团编号</th>
+                    <th>集团名称</th>
+                    <th width="50">状态</th>
+                    <th ng-show="root.menu.show('00401')">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="unit in unitStore.data">
+                    <td>{{(unitStore.page - 1) * unitStore.limit + $index + 1}}</td>
+                    <td>{{unit.unit_no}}</td>
+                    <td>{{unit.unit_name}}</td>
+                    <td>
+                        <span ng-show="unit.status=='0'" class="badge badge-success">&nbsp;&nbsp;</span>
+                        <span ng-show="unit.status=='1'" class="badge badge-important">&nbsp;&nbsp;</span>
+                    </td>
+                    <td ng-show="root.menu.show('00401')">
+                        <a href="javascript:;" ng-show="root.menu.show('00401')" ng-click="update($index)">修改</a>
+                        <a href="javascript:;" ng-show="root.menu.show('00401')" ng-click="setUnitStatus(unit.unit_no)">
+                            <span ng-show="unit.status=='0'">停用</span>
+                            <span ng-show="unit.status=='1'">启用</span>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <paginator></paginator>
+        </div>
+    </div>
+</div>

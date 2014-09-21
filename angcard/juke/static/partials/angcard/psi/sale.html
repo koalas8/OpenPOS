@@ -1,0 +1,249 @@
+<!-- BEGIN PAGE HEADER-->
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <h3 class="page-title">
+            商品销售
+            <small>Sale</small>
+            <div class="pull-right">
+                <button class="btn btn-primary" ng-show="root.menu.show('01104')" ng-click="newSale()">销售</button>
+                <button class="btn btn-primary" ng-show="root.menu.show('00907')" ng-click="showOrderList(query.page)">订单列表</button>
+            </div>
+        </h3>
+        <!-- END PAGE TITLE & BREADCRUMB-->
+    </div>
+</div>
+<!-- END PAGE HEADER-->
+
+<div class="portlet box blue" ng-show="menu.action=='sale'">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-reorder"></i>
+            订单商品
+        </div>
+        <div class="actions">
+            <a href="javascript:;" class="btn btn-sm yellow" ng-click="submitOrder(order)">支付</a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <!-- BEGIN FORM-->
+        <form class="form-horizontal" ng-submit="submitSaleOrder(order)">
+            <div class="form-body">
+                <div class="input-group input-xlarge">
+                    <input ng-model="saleKeyword"  type="text" class="form-control" placeholder='输入商品名称/条码 或直接点击右侧的"+"'>
+                    <span class="input-group-btn">
+                        <button class="btn blue" ng-click="searchSaleGoods(saleKeyword)" type="button">+</button>
+                    </span>
+                </div>
+            </div>
+        </form>
+        <!-- END FORM-->
+        <table class="table table-striped table-bordered" ng-show="(menu.action=='sale')&&(order.length>0)">
+            <thead>
+                <tr>
+                    <th width="50">序号</th>
+                    <th>商品名称</th>
+                    <th>单价</th>
+                    <th>数量</th>
+                    <th>金额</th>   
+                    <th>折扣</th>                 
+                    <th>折后</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="d in order">
+                    <td>{{$index+1}}</td>
+                    <td>{{d.goods_name}}</td>
+                    <td>
+                        <input type="text" style="width: 30px;" value="{{d.price}}"
+                               ng-model="d.price"
+                               ng-change="calculateAmount(d.goods_id)">
+                    </td>
+                    <td>
+                        <input type="text" style="width: 30px;" value="{{d.goods_amount}}"
+                               ng-model="d.goods_amount"
+                               ng-change="calculateAmount(d.goods_id)">
+                    </td>
+                    <td>{{d.money_amount | number:2}}</td>
+                    <td style="width: 60px;">
+                        <input type="text" style="width: 30px;" value="{{d.discount}}"
+                               ng-model="d.discount"
+                               ng-change="calculateAmount(d.goods_id)">%
+                    </td>
+                    <td style="width: 100px;">{{d.discounted_money_amount | number:2}}</td>
+                </tr>
+                <tr>
+                    <td>合计</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="color: red; font-size: 18px;">{{ getOrderTotalPay() | number:2 }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>  
+</div>  
+
+
+<div id="multiGoodsFoundModal" class="modal fade" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">选择商品</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th width="50">序号</th>
+                            <th>商品名称</th>
+                            <th>吊牌价</th>
+                            <th>零售价</th>
+                            <th>型号</th>
+                            <th>颜色</th>
+                            <th width="100"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="g in multiGoodsFoundTableStore.data">
+                            <td>{{ (multiGoodsFoundTableStore.page - 1) * multiGoodsFoundTableStore.limit + $index + 1 }}</td>
+                            <td>{{ g.goods_name }}</td>
+                            <td>{{ g.label_price/100.00 | number:2 }}</td>
+                            <td>{{ g.sale_price/100.00 | number:2 }}</td>
+                            <td>{{ g.size }}</td>
+                            <td style="background-color: {{ g.color }}"></td>
+                            <td><a href="javascript:;" class="btn btn-xs green" ng-click="addMultiTableGoods($index)">选择此商品</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <juke-pagination collection="multiGoodsFoundTableStore" page="1" limit="10"
+                        url="multiGoodsFoundUrl"></juke-pagination>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn default">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="payForm" class="portlet box blue" style="display:none; width:600px;">
+    <div class="portlet-title">
+        <div class="caption"><i class="fa fa-calendar"></i>支付</div>
+        <div class="actions">
+            <a href="javascript:;" ng-click="payment.mode='card'" class="btn btn-sm yellow easy-pie-chart-reload">
+                <i class="fa fa-repeat"></i> 使用会员卡支付
+            </a>
+            <a href="javascript:;" ng-click="payment.mode='cash'" class="btn btn-sm yellow easy-pie-chart-reload">
+                <i class="fa fa-repeat"></i> 使用现金支付
+            </a>
+            <a href="javascript:;" ng-click="payment.mode='mixed'" class="btn btn-sm yellow easy-pie-chart-reload">
+                <i class="fa fa-repeat"></i> 联合支付
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <form class="form-horizontal" role="form">
+            <div class="form-body">
+                <legend>
+                    应收金额 {{payment.amount/100.00 | number:2}} 元 &nbsp;&nbsp;&nbsp;
+                    <span ng-show="payment.mode=='cash'">
+                        找零 {{payment.cash.amount*100 > payment.amount ? (payment.cash.amount*100-payment.amount)/100.00 : 0.00  | number:2}} 元
+                    </span>
+                </legend>
+
+                <div class="form-group" ng-show="(payment.mode=='card') || (payment.mode=='mixed')">
+                    <label class="col-md-3 control-label">刷卡</label>
+                    <div class="col-md-6">
+                        <input ng-model="payment.card.card_no" ng-blur="splitCard(payment.card.card_no)" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group" ng-show="(payment.mode=='card') || (payment.mode=='mixed')">
+                    <label class="col-md-3 control-label">输入密码</label>
+                    <div class="col-md-6">
+                        <input ng-model="payment.card.password" type="password" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group" ng-show="(payment.mode=='card') || (payment.mode=='mixed')">
+                    <label class="col-md-3 control-label">刷卡金额</label>
+                    <div class="col-md-6">
+                        <input ng-model="payment.card.amount" type="text" class="form-control"
+                            value="{{payment.mode=='card'? payment.amount/100.00 : ''  | number:2}}">
+                    </div>
+                </div>
+                <div class="form-group" ng-show="(payment.mode=='cash') || (payment.mode=='mixed')">
+                    <label class="col-md-3 control-label">现金</label>
+                    <div class="col-md-6">
+                        <input ng-model="payment.cash.amount" type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button class="btn blue" ng-click="pay(payment)">付款</button>            
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!--订单列表-->
+<div class="row col-md-12" ng-show="menu.action=='orderList'">
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th width="100">订单序号</th>
+                <th>创建时间</th>
+                <th>已支付</th>
+                <th>商品数量</th>
+                <th>商品总额</th>
+                <th>支付方式</th>
+                <th>卡付</th>
+                <th>现金付</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="order in orderStore.data">
+                <td>{{$index+1+(orderStore.page-1)*orderStore.limit}}</td>
+                <td>{{order.create_time}}</td>
+                <td>{{order.is_paid | yesOrNoFilter}}</td>
+                <td>{{order.goods_amount}}</td>
+                <td>{{order.amount/100.00 | number:2}}</td>
+                <td>{{order.mode_of_payment | modeOfPaymentFilter}}</td>
+                <td>{{order.card_pay_amount/100.00 | number:2}}</td>
+                <td>{{order.cash_pay_amount/100.00 | number:2}}</td>
+                <td><button class="btn btn-xs green" ng-click="showOrderDetail(order.id)">商品列表</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <ul class="pagination">
+      <li ng-repeat="p in orderListPager.pages"><a href="javascript:;" ng-click="showOrderList(p.page)">{{p.label}}</a></li>
+    </ul>
+</div>
+<!--///订单列表-->
+
+<!--订单明细-->
+<table class="table table-striped table-bordered" ng-show="menu.action=='orderDetail'">
+    <thead>
+        <tr>
+            <th width="100">序号</th>
+            <th>商品名称</th>
+            <th>商品数量</th>
+            <th>单价</th>
+            <th>商品总额</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="g in orderDetailStore.data">
+            <td>{{$index+1+(orderDetailStore.page-1)*orderDetailStore.limit}}</td>
+            <td>{{g.goods_name}}</td>
+            <td>{{g.goods_amount}}</td>
+            <td>{{g.goods_price / 100.00 | number:2}}</td>
+            <td>{{g.goods_amount * g.goods_price / 100.00 | number:2}}</td>
+        </tr>
+    </tbody>
+</table>
+<!--///订单明细-->

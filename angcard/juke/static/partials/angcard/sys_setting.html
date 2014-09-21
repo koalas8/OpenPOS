@@ -1,0 +1,43 @@
+<div class="col-md-12">	
+	<div class="portlet box blue tabbable">
+		<div class="portlet-title">
+			<div class="caption"><i class="fa fa-reorder"></i>设置中心</div>
+		</div>
+		<div class="portlet-body">
+			<div class=" portlet-tabs">
+				<ul class="nav nav-tabs">
+					<li><a data-toggle="tab" href="#tab_pos">POS设置</a></li>
+                    <li><a data-toggle="tab" href="#tab_weixin">微信设置</a></li>
+				</ul>
+				<div class="tab-content">						
+					<div class="tab-pane" id="tab_pos">
+						<form class="form-horizontal" ng-submit="setTicket(ticket)">
+							<div class="form-body">
+								<div class="form-group">
+									<label class="col-md-3 control-label">小票抬头</label>
+
+									<div class="col-md-4">
+										<textarea ng-model="ticket.head" class="form-control"></textarea>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">小票结尾</label>
+
+									<div class="col-md-4">
+										<textarea ng-model="ticket.foot" class="form-control"></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="form-actions fluid">
+								<div class="col-md-offset-3 col-md-9">
+									<button type="submit" class="btn blue">确定</button>
+								</div>
+							</div>
+						</form>
+						<!-- END FORM-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>	
